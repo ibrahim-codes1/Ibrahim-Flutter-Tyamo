@@ -16,7 +16,7 @@ class Register extends StatelessWidget {
   final RoundedLoadingButtonController _RegisterbtnController =
       RoundedLoadingButtonController();
 
-  final RegisterServices registerServices = RegisterServices();
+  RegisterServices registerServices = RegisterServices();
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +80,9 @@ class Register extends StatelessWidget {
                   controller: _RegisterbtnController,
                   color: Color(0xff00C1AA),
                   onPressed: () {
-                    print(registerServices.emailController.text);
-                    print(registerServices.passController.text);
-                    print(registerServices.comfirmpassController.text);
+                    print("Entered Emial" + registerServices.emailController.text);
+                    print("Entered Password" + registerServices.passController.text);
+                    print("Entered Confirm Password" + registerServices.comfirmpassController.text);
                   },
                   child: Text(
                     "Register",
