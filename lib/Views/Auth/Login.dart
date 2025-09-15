@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
+import 'package:tymao/Controller/UserController/user_controller.dart';
 import 'package:tymao/Interfaces/Auth/login_services.dart';
 import 'package:tymao/Views/Auth/Forgot_Password.dart';
 import 'package:tymao/Views/Auth/Register.dart';
@@ -52,7 +53,7 @@ class Login extends StatelessWidget {
                 obscureText: false,
                 size: 14.sp,
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 30),
               AuthTextField(
                 icon: Icons.password,
                 keyboardType: TextInputType.text,
@@ -70,16 +71,21 @@ class Login extends StatelessWidget {
                   controller: _loginbtnController,
                   color: Color(0xff00C1AA),
                   onPressed: () {
-                    Timer(Duration(seconds: 3), () {
-                      _loginbtnController.success();
-                      Navigator.pushReplacement(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          child: ProfileSetup(),
-                        ),
-                      );
-                    });
+                    UserController().loginUser(
+                      loginServices.emailController.text,
+                      loginServices.passController.text,
+                    );
+
+                    // Timer(Duration(seconds: 3), () {
+                    //   _loginbtnController.success();
+                    //   Navigator.pushReplacement(
+                    //     context,
+                    //     PageTransition(
+                    //       type: PageTransitionType.fade,
+                    //       child: ProfileSetup(),
+                    //     ),
+                    //   );
+                    // });
                   },
                   child: Text(
                     "Login",

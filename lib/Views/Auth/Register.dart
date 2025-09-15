@@ -11,6 +11,7 @@ import 'package:tymao/Views/Widgets/Auth/Auth_text_field.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:tymao/Controller/UserController/user_controller.dart';
 import 'package:tymao/Interfaces/Auth/register_services.dart';
+import 'package:achievement_view/achievement_view.dart';
 
 class Register extends StatelessWidget {
   final RoundedLoadingButtonController _RegisterbtnController =
@@ -80,9 +81,19 @@ class Register extends StatelessWidget {
                   controller: _RegisterbtnController,
                   color: Color(0xff00C1AA),
                   onPressed: () {
-                    print("Entered Emial" + registerServices.emailController.text);
-                    print("Entered Password" + registerServices.passController.text);
-                    print("Entered Confirm Password" + registerServices.comfirmpassController.text);
+                    if (registerServices.passController.text ==
+                        registerServices.comfirmpassController.text) {
+                      UserController().registerUser(
+                        registerServices.emailController.text,
+                        registerServices.passController.text,
+                      );
+                    } else {
+                      AchievementView(
+                        title: "Error",
+                        subTitle: "Passwords do not match",
+                        color: Color(0xffFF5252),
+                      ).show(context);
+                    }
                   },
                   child: Text(
                     "Register",
